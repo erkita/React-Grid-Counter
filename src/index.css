@@ -16,16 +16,24 @@
   margin: 20px auto;
   width: 200px;
   height: 200px;
-  display:grid;
+  display: grid;
   grid-template-columns: 100px 100px;
   grid-row: auto auto;
 }
 
-.box{
+.box {
   width: 100px;
   height: 100px;
   border: 1px solid grey;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.box.bg-white {
+  background-color: white;
+}
+
+.box.bg-black {
+  background-color: black;
 }
