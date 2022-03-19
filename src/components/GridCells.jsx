@@ -1,75 +1,67 @@
-import React, { useState } from 'react';
-import ParentGrid from './ParentGrid';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { clicked, decrement, increment, unclicked } from '../action'
 
-// export default function GridCells(props) {
-//     let [bgColor, setBgColor] = useState("white");
-//     let [count, setCount] = useState(0);
+export default function GridCells(props) {
+    const grid = useSelector(state => state.grid);
+    const dispatch = useDispatch();
+    let bgColor = grid.bgColor;
 
-//     const handleClick = () => {
-//         if (bgColor === "white") {
-//             setBgColor("black");
-//         } else {
-//             setBgColor("white");
-//         }
-//     }
-
-//     const countClick = () => {
-//         if (bgColor === "white") {
-//             setCount(-1);
-//             console.log("white, decrement")
-//         } else {
-//             setCount(1);
-//             console.log("black, increment")
-//         }
-//         console.log(count);
-//         props.onClick();
-//     }
-
-
-//   return (
-//     <>
-//         <body>
-//             <div onClick={() => { handleClick(); countClick();}} class={"box bg-" + bgColor}></div>
-//         </body>
-//     </>
-//   )
-// }
-
-
-export default class GridCells extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            bgColor: "white",
-            count: 0
-        };
-    }
-
-    handleClick() {
-        let bgColor = this.state.bgColor;
+    const handleClick = () => {
         if (bgColor === "white") {
-            this.setState({
-                bgColor: "black",
-                count: 1
-            });
+            dispatch(clicked());
+            dispatch(increment());
         } else {
-            this.setState({
-                bgColor: "white",
-                count: 0
-            });
+            dispatch(unclicked());
+            dispatch(decrement());
         }
-        // this.props.getTotal();
-        // console.log(this.state.count);
-    }
+    };
 
-  render() {
-        return (
-            <>
-                {/* <ParentGrid count={this.state.count}/> */}
-                <div>
-                    <div onClick={this.handleClick.bind(this)} className={"box bg-" + this.state.bgColor}></div>
-                </div>
-            </> 
-        )
-    }
+    return (
+        <>
+             <div>
+                <div onClick={() => handleClick()} className={"box bg-" + bgColor}></div>
+                {/* <div className={"box bg-" + bgColor}></div> */}
+            </div>
+        </>
+    )
 }
+
+
+// export default class GridCells extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             bgColor: "white",
+//             count: 0
+//         };
+//     }
+
+//     handleClick() {
+//         let bgColor = this.state.bgColor;
+//         if (bgColor === "white") {
+//             this.setState({
+//                 bgColor: "black",
+//                 count: 1
+//             });
+//         } else {
+//             this.setState({
+//                 bgColor: "white",
+//                 count: 0
+//             });
+//         }
+//         this.props.getTotal();
+//         // console.log(this.state.count);
+//     }
+
+//   render() {
+//         return (
+//             <>
+//                 {/* <ParentGrid count={this.state.count}/> */}
+//                 <div>
+//                     <div onClick={this.handleClick.bind(this)} className={"box bg-" + this.state.bgColor}></div>
+//                 </div>
+//             </> 
+//         )
+//     }
+// }
