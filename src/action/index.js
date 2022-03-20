@@ -1,23 +1,8 @@
-export const clicked = () => {
+export const click = (count, x, y) => {
     return {
-        type: "clicked",
-    };
-};
-
-export const unclicked = () => {
-    return {
-        type: "unclicked",
-    };
-};
-
-export const increment = () => {
-    return {
-        type: "increment",
-    };
-};
-
-export const decrement = () => {
-    return {
-        type: "decrement",
+        type: "click",
+        count: count,
+        x: x,
+        y: y
     };
 };

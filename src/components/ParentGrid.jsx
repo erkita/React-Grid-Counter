@@ -1,70 +1,31 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import GridCells from './GridCells';
+import {v4 as uuidv4} from 'uuid';
 
 export default function ParentGrid() {
     const board = useSelector(state => state.board);
-    // const grid = useSelector(state => state.grid);
+    const gridCount = useSelector(state => state.grid);
+
+    let col = 2;
+    let row = 2;
+    let boardState = [];
+
+    for (let i = 0; i < col; i++) {
+      for (let j = 0; j < row; j++) {
+        boardState.push(<GridCells count={board[i][j]} x={i} y={j}/>);
+      }
+    }
   
   return (
     <>
-      <h3 className="text-box">Count: {board.totalCount}</h3>
+      <h3 className="text-box">Count: {gridCount}</h3>
       <section className="box-container">
-        <GridCells />
-        <GridCells />
-        <GridCells />
-        <GridCells />
-        {/* <GridCells bgColor={grid.bgColor}/>
-        <GridCells bgColor={grid.bgColor}/> */}
+        {boardState.map(item => {
+            return (<div key={uuidv4()}>{item}</div>)
+          }
+        )}
       </section>
     </> 
   )
 }
-
-// export default class ParentGrid extends React.Component {
-//     constructor(props) {
-//         super(props)
-//         this.state = {
-//             count: 0,
-//             clicked: false
-//         }
-//         this.getTotal = this.getTotal.bind(this);
-//     }
-
-//     getTotal() {
-//         const clicked = this.state.clicked;
-//         let currentTotal = this.state.count;
-//         if (clicked) {
-//             this.setState({
-//                 count: currentTotal - 1,
-//                 clicked: false
-//             });
-//         } else {
-//             this.setState({
-//                 count: currentTotal + 1,
-//                 clicked: true
-//             });
-//         }
-//         console.log(this.state.count);
-//     }
-
-//     render() {
-//         return (
-//             <>
-//             {/* console.log(this.props.count); */}
-//             <h3 className="text-box">Count: {this.state.count}</h3>
-//             <section className="box-container">
-//                 {/* <GridCells onClick={this.getTotal}/>
-//                 <GridCells onClick={this.getTotal}/>
-//                 <GridCells onClick={this.getTotal}/>
-//                 <GridCells onClick={this.getTotal}/> */}
-//                 <GridCells getTotal={this.getTotal}/>
-//                 <GridCells getTotal={this.getTotal}/>
-//                 <GridCells getTotal={this.getTotal}/>
-//                 <GridCells getTotal={this.getTotal}/>
-
-//             </section>
-//             </> 
-//         )
-//     }
-// }

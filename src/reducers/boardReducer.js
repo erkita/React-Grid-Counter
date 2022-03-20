@@ -1,21 +1,18 @@
-const initialState = {
-    type: "increment",
-    totalCount: 0
-}
+const initialState = [
+    [0, 0],
+    [0, 0]
+];
 
 export default function boardReducer(state = initialState, action) {
-    let currentCount = state.totalCount;
     switch(action.type) {
-        case "increment":
-            return {
-                type: "increment",
-                totalCount: currentCount + 1,
+        case "click":
+            let count = action.count;
+            if (count === 0) {
+                state[action.x][action.y] = 1;
+            } else {
+                state[action.x][action.y] = 0;
             }
-        case "decrement":
-            return {
-                type: "decrement",
-                totalCount: currentCount - 1,
-            }
+            return [...state];
         default:
             return state;
     }
