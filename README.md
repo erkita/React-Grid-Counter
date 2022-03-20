@@ -1,4 +1,8 @@
-External resources used:<br>
+## MA 5 Comments
+
+- used Redux
+
+**External resources used:** <br>
 
 - https://www.youtube.com/watch?v=CVpUuw9XSjY
 - https://blog.devgenius.io/the-quicky-lazy-but-effective-way-to-create-unique-keys-for-react-elements-e45d574028a3
